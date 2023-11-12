@@ -7,10 +7,6 @@ export abstract class DBDriver {
      */
     abstract initialize(): Promise<boolean>;
     /**
-     * Reset the database. The database is reset to its initial state.
-     */
-    abstract resetData(): Promise<boolean>;
-    /**
      * Read the entire database
      */
     abstract read(): Promise<Response[]>;

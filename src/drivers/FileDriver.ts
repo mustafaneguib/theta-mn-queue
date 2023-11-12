@@ -9,7 +9,6 @@ export class FileDriver extends DBDriver {
     constructor() {
         super();
         this.file = path.join(__dirname, `${path.sep}..${path.sep}data${path.sep}journal.json`);
-
     }
 
     /**
@@ -17,37 +16,11 @@ export class FileDriver extends DBDriver {
      */
     public async initialize(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
-            const readData = await this.read().catch((err) => {});
-            if (readData?.length) {
-                return resolve(true);
-            } else {
-                let response: Response[] = [];
-                response.push({
-                    id: 1,
-                    key: 'initialization',
-                    content: 'initialization content',
-                });
-
-                return resolve(await this.write(response));
-            }
-        });
-    }
-
-    /**
-     * Reset the database. The database is reset to its initial state.
-     */
-    public async resetData(): Promise<boolean> {
-        return new Promise<boolean>(async (resolve, reject) => {
             let response: Response[] = [];
-            response.push({
-                id: 1,
-                key: 'initialization',
-                content: 'initialization content',
-            });
             return resolve(await this.write(response));
         });
     }
-
+   
     /**
      * Read the entire database
      */

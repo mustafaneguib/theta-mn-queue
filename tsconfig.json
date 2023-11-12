@@ -1,0 +1,13 @@
+{
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "lib": ["dom"],
+        "declaration": true,
+        "module": "commonjs",
+        "resolveJsonModule": true,
+    },
+    "include": ["src","data"],
+    "exclude": ["node_modules"],
+    "target": "es2016",
+}

@@ -1,31 +1,47 @@
 
-# Theta MN Queue
+# Theta Queue
 
 Theta Queue is an easy to use queue system with support for multiple data sources.
 
 
 ## Badges
 
-Add badges from somewhere like: [shields.io](https://shields.io/)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) 
+![npm](https://img.shields.io/npm/v/theta-mn-queue)
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
+## Installation
+
+Install theta-mn-queue with npm
+
+```bash
+  npm i theta-mn-queue
+
+```
+or
+
+```bash
+  yarn add theta-mn-queue
+```
 ## Authors
 
 - [@mustafaneguib](https://www.github.com/mustafaneguib)
 
 
-## Implemented Features
-At the moment a rudimentary queue has been implemented with all of the essential methods for a functioning queue. In addition, in order to implement persistant queues for now a JSON file is being used to save the state of the queue. 
+## Features
+The features that have been marked as check have been implemented while those that are planned to be implemented are marked as unchecked.
 
-## Planned Features
-At the moment the current database that has been implemented is a json file that is written to when the commit method is called.
-Support for the following databases/datastores is planned:
-
-#### Redis
-#### MySQL
-#### MongoDB
-#### PostgreSQL 
+- [x] Queue implementation with public API
+- [x] Structured architecture for clean and easy development
+- [x] Single file based persistant layer
+- [ ] Redis based persistant layer
+- [ ] MySQL based persistant layer
+- [ ] MongoDB based persistant layer
+- [ ] PostgreSQL based persistant layer
+- [ ] Unit Tests
+- [ ] Improved Documentation
+- [ ] Code of Conduct
+- [ ] Contribution documentation and plan of action
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file

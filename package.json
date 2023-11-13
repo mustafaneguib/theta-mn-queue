@@ -1,6 +1,6 @@
 {
  "name": "theta-mn-queue",
- "version": "1.0.0",
+ "version": "1.0.1",
  "description": "An easy to use queue system with support for multiple data sources",
  "author": "Mustafa Neguib",
  "license": "MIT",

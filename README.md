@@ -1,5 +1,5 @@
 
-# Theta Queue
+# Theta MN Queue
 
 Theta Queue is an easy to use queue system with support for multiple data sources developed in TypeScript.
 

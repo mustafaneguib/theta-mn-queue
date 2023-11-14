@@ -1,14 +1,14 @@
 
 # Theta Queue
 
-Theta Queue is an easy to use queue system with support for multiple data sources.
+Theta Queue is an easy to use queue system with support for multiple data sources developed in TypeScript.
 
 
 ## Badges
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) 
 ![npm](https://img.shields.io/npm/v/theta-mn-queue)
-
+[![Open Source Helpers](https://www.codetriage.com/mustafaneguib/theta-mn-queue/badges/users.svg)](https://www.codetriage.com/mustafaneguib/theta-mn-queue)
 
 ## Installation
 
@@ -35,6 +35,8 @@ The features that have been marked as check have been implemented while those th
 - [x] Structured architecture for clean and easy development
 - [x] Single file based persistant layer
 - [ ] Redis based persistant layer
+- [ ] Add support for multiple/parallel queues
+- [ ] Add support for job scheduling with appropriate delays and speed controls with support for parallel processing
 - [ ] MySQL based persistant layer
 - [ ] MongoDB based persistant layer
 - [ ] PostgreSQL based persistant layer

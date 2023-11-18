@@ -21,7 +21,9 @@ export class DBProcessor {
     getDriver(driver: string): DBDriver {
         if (driver === 'file') {
             return new FileDriver();
-        } 
+        } else if (driver === 'redis') {
+            return  new RedisDriver();
+        }
         // else if (driver === 'mongodb') {
         //     return new MongoDBDriver();
         // } else if (driver === 'redis') {

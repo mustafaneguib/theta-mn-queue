@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+
 export class Utility {
 
     private static instance: Utility;
@@ -10,6 +12,7 @@ export class Utility {
     public static getInstance(): Utility {
         if(!Utility.instance) {
             Utility.instance = new Utility();
+            dotenv.config();
         }
         return Utility.instance;
     }

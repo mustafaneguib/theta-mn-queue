@@ -105,4 +105,13 @@ export class FileDriver extends DBDriver {
         });
     }
 
+    /**
+     * Close the database connection.
+     */
+    public async close(): Promise<boolean> {
+        return new Promise<boolean>(async (resolve, reject) => {
+            return resolve(true);
+        });
+    }
+
 }

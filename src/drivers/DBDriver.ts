@@ -15,4 +15,9 @@ export abstract class DBDriver {
      * @param content The content to write to the database
      */
     abstract write(content: Response[]): Promise<boolean>;
+
+    /**
+     * Close the database connection.
+     */
+    abstract close(): Promise<boolean>;
 }

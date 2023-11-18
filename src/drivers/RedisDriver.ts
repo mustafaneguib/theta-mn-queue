@@ -1,5 +1,5 @@
 import { DBDriver } from "./DBDriver";
-import { Response } from "../types/Response";
+import { Resource } from "../types/Resource";
 import { createClient } from 'redis'
 import { RedisClientType } from '@redis/client'
 
@@ -23,11 +23,11 @@ export class RedisDriver extends DBDriver {
         });
     }
 
-    public async read(): Promise<Response[]> {
-        return new Promise<Response[]>(async (resolve, reject) => {
+    public async read(): Promise<Resource[]> {
+        return new Promise<Resource[]>(async (resolve, reject) => {
             const length = await this.redisClient.lLen(this.key);
             const data: any = await this.redisClient.lRange(this.key, 0, length);
-            let parsedData: Response[] = []; 
+            let parsedData: Resource[] = []; 
             data.forEach((item: any) => {
                 parsedData.push(JSON.parse(item));
             });
@@ -35,7 +35,7 @@ export class RedisDriver extends DBDriver {
         });
     }
 
-    public async write(content: Response[]): Promise<boolean> {
+    public async write(content: Resource[]): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
             //We want to delete the key first, because the key might already exist
             //and we do not want to append to the key. Essentially, the write

@@ -1,5 +1,5 @@
 import { DBDriver } from "./DBDriver";
-import { Response } from "../types/Response";
+import { Resource } from "../types/Resource";
 import fs from 'fs';
 import path from 'path';
 
@@ -16,30 +16,30 @@ export class FileDriver extends DBDriver {
      */
     public async initialize(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
-            let response: Response[] = [];
-            return resolve(await this.write(response));
+            let resource: Resource[] = [];
+            return resolve(await this.write(resource));
         });
     }
    
     /**
      * Read the entire database
      */
-    public async read(): Promise<Response[]> {
-        return new Promise<Response[]>(async (resolve, reject) => {
-            let response: Response[] = [];
+    public async read(): Promise<Resource[]> {
+        return new Promise<Resource[]>(async (resolve, reject) => {
+            let resource: Resource[] = [];
             const readData = await this.readFromFile(this.file).catch((err) => {});
             if (readData) {
                 const parsedData = JSON.parse(readData);
                 parsedData.forEach((item: any) => {
-                    response.push({
+                    resource.push({
                         id: item.id,
                         key: item.key,
                         content: item.content,
                     });
                 });
-                return resolve(response);
+                return resolve(resource);
             } else {
-                return reject(response);
+                return reject(resource);
             }
         });
     }
@@ -48,7 +48,7 @@ export class FileDriver extends DBDriver {
      * Write to the database. This method appends to the database.
      * @param content The content to write to the database
      */
-    public async write(content: Response[]): Promise<boolean> {
+    public async write(content: Resource[]): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
             return resolve(await this.writeToFile(this.file, JSON.stringify(content)));
         });

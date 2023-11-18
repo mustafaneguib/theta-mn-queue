@@ -1,12 +1,12 @@
-import { Response } from '../types/Response';
+import { Resource } from '../types/Resource';
 export class Document {
-    private resource: Response;
+    private resource: Resource;
 
-    constructor(resource: Response) {
+    constructor(resource: Resource) {
         this.resource = resource;
     }
 
-    public getResource(): Response {
+    public getResource(): Resource {
         return this.resource;
     }
 }

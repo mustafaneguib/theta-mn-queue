@@ -1,5 +1,4 @@
 import { Queue } from '../queue/Queue';
-import { Response } from '../types/Response';
 import { Document } from '../queue/Document';
 import { Config } from '../types/Config';
 
@@ -24,10 +23,10 @@ export class QueueProcessor {
         });
     }
   
-    public enqueue(document: Response): Promise<boolean> {
+    public enqueue(document: Document): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            const response:Response = document;
-            return resolve(this.queue.enqueue(new Document(response)));
+            const resource:Document = document;
+            return resolve(this.queue.enqueue(resource));
         });
     }
 

@@ -2,14 +2,14 @@
 import { DBProcessor } from "../DBProcessor";
 import { DBDriver } from "../drivers/DBDriver";
 import { Config } from "../types/Config";
-import { Response } from "../types/Response";
+import { Resource } from "../types/Resource";
 import { Utility } from "../utility/Utility";
 import { Document } from "./Document";
 export class Queue {
 
     private queue: Document[] = [];
     private dbDriver: DBDriver;
-    private dataStore: Response[] = [];
+    private dataStore: Resource[] = [];
 
     constructor() {
         const dataDriverToUse: string = Utility.getInstance().getConstants('DATA_DRIVER');

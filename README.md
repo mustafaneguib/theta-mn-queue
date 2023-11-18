@@ -34,7 +34,7 @@ The features that have been marked as check have been implemented while those th
 - [x] Queue implementation with public API
 - [x] Structured architecture for clean and easy development
 - [x] Single file based persistant layer
-- [ ] Redis based persistant layer
+- [X] Redis based persistant layer
 - [ ] Add support for multiple/parallel queues
 - [ ] Add support for job scheduling with appropriate delays and speed controls with support for parallel processing
 - [ ] MySQL based persistant layer

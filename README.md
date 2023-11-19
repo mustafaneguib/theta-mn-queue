@@ -112,7 +112,7 @@ This method returns whether the queue is empty or not.
 
 This method returns the number of items in the queue.
 
-### Features
+## Features
 The features that have been marked as check have been implemented while those that are planned to be implemented are marked as unchecked.
 
 - [x] Queue implementation with public API
@@ -129,7 +129,7 @@ The features that have been marked as check have been implemented while those th
 - [ ] Add support for multiple/parallel queues
 - [ ] Add support for job scheduling with rate limiting
 
-### Environment Variables
+## Environment Variables
 
 Please refer to the file .env.example that has been provided in the codebase with keys and their sample values.
 
@@ -139,20 +139,20 @@ Please refer to the file .env.example that has been provided in the codebase wit
 `REDIS_PORT`
 `DATA_DRIVER`
 
-### Tech Stack
+## Tech Stack
 
 **Server:** TypeScript, NodeJS
 
-### Authors
+## Authors
 
 - [@mustafaneguib](https://www.github.com/mustafaneguib)
 
 
-### Feedback
+## Feedback
 
 If you have any feedback, please reach out to us at mustafa.neguib@gmail.com
 
-### Contributing
+## Contributing
 
 Theta MN Queue is in active development and invites software engineers and software developers to help us in making this library one of the best queue and job scheduling library that there can be. We are actively seeking contributors to help us take this project forward.
 
@@ -161,7 +161,7 @@ We are also interested in getting help in improving the documentation for this p
 If you find a bug in the code do create an issue in the issue tracker https://github.com/mustafaneguib/theta-mn-queue/issues and if you work on fixing it do create a merge request with the details of the fix so that it can be applied.
 
 
-### License
+## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 

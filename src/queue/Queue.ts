@@ -1,5 +1,5 @@
 
-import { DBProcessor } from "../DBProcessor";
+import { DBProcessor } from "../drivers/DBProcessor";
 import { DBDriver } from "../drivers/DBDriver";
 import { Config } from "../types/Config";
 import { Resource } from "../types/Resource";

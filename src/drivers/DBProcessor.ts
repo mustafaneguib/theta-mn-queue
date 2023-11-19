@@ -1,8 +1,8 @@
-import { DBDriver } from "./drivers/DBDriver";
-import { FileDriver } from "./drivers/FileDriver";
-import { MongoDBDriver } from "./drivers/MongoDBDriver";
-import { MySQLDriver } from "./drivers/MySQLDriver";
-import { RedisDriver } from "./drivers/RedisDriver";
+import { DBDriver } from "./DBDriver";
+import { FileDriver } from "./FileDriver";
+import { MongoDBDriver } from "./MongoDBDriver";
+import { MySQLDriver } from "./MySQLDriver";
+import { RedisDriver } from "./RedisDriver";
 
 export class DBProcessor {
 

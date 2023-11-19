@@ -16,9 +16,7 @@ export class RedisDriver extends DBDriver {
 
     public async initialize(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
-            console.log('Initializing RedisDriver');
             await this.redisClient.connect()
-            console.log('RedisDriver initialized');
             return resolve(true);
         });
     }
@@ -53,10 +51,7 @@ export class RedisDriver extends DBDriver {
      */
     public async close(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
-            console.log('Closing RedisDriver');
             await this.redisClient.disconnect()
-            await this.redisClient.quit()
-            console.log('RedisDriver closed');
             return resolve(true);
         });
     }

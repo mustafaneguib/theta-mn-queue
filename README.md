@@ -64,19 +64,25 @@ The features that have been marked as check have been implemented while those th
 - [x] Structured architecture for clean and easy development
 - [x] Single file based persistant layer
 - [X] Redis based persistant layer
-- [X] Improved Documentation
+- [X] Code of conduct document
+- [X] Changelog document 
+- [ ] Unit Tests
+- [ ] Contribution documentation and plan of action
 - [ ] MySQL based persistant layer
 - [ ] MongoDB based persistant layer
 - [ ] PostgreSQL based persistant layer
-- [ ] Unit Tests
-- [ ] Code of Conduct
-- [ ] Contribution documentation and plan of action
 - [ ] Add support for multiple/parallel queues
 - [ ] Add support for job scheduling with rate limiting
 
 ## Environment Variables
 
 Please refer to the file .env.example that has been provided in the codebase with keys and their sample values.
+
+`BASE_URL`
+`PORT`
+`MONGO_URL` 
+`REDIS_PORT`
+`DATA_DRIVER`
 
 ## Tech Stack
 
@@ -90,6 +96,14 @@ Please refer to the file .env.example that has been provided in the codebase wit
 ## Feedback
 
 If you have any feedback, please reach out to us at mustafa.neguib@gmail.com
+
+## Contributing
+
+Theta MN Queue is in active development and invites software engineers and software developers to help us in making this library one of the best queue and job scheduling library that there can be. We are actively seeking contributors to help us take this project forward.
+
+We are also interested in getting help in improving the documentation for this project so that it is easy to read and understand.
+
+If you find a bug in the code do create an issue in the issue tracker https://github.com/mustafaneguib/theta-mn-queue/issues and if you work on fixing it do create a merge request with the details of the fix so that it can be applied.
 
 
 ## License

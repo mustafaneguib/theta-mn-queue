@@ -5,6 +5,15 @@
  "author": "Mustafa Neguib",
  "license": "MIT",
  "readmeFilename": "README.md",
+ "keywords": [
+  "queue",
+  "typescript queue",
+  "file queue",
+  "redis queue",
+  "mongo queue",
+  "mongoose queue",
+  "mongodb queue"
+  ],
  "main": "dist/index.js",
  "types": "dist/index.d.ts",
  "files": [
@@ -31,8 +40,6 @@
   "@jest/globals": "^29.7.0",
   "@tsconfig/node16": "^1.0.2",
   "@types/node": "^17.0.29",
-  "@types/node-fetch": "^2.6.3",
-  "@types/request": "^2.48.8",
   "@typescript-eslint/eslint-plugin": "^5.47.1",
   "@typescript-eslint/parser": "^5.47.1",
   "babel-jest": "^29.7.0",

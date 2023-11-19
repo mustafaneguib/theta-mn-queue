@@ -61,8 +61,6 @@ setupQueue();
 
 ## API
 
-The public interface consists of the following two classes:
-
 ### Resource
 
 This is a TypeScript interface that is being used as a type and has the following structure:

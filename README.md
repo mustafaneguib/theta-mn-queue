@@ -3,7 +3,7 @@
 
 Theta Queue is an easy to use queue system with support for multiple data sources developed in TypeScript and has been designed and developed from the ground up.
 
-##** Important: This library is currently in active development and the public API might get changed, until the design and APIs have been locked. Use this library wisely.**
+##**Important: This library is currently in active development and the public API might get changed, until the design and APIs have been locked. Use this library wisely.**
 
 ## Badges
 

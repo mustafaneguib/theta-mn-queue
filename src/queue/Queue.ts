@@ -1,25 +1,34 @@
 
 import { DBProcessor } from "../drivers/DBProcessor";
 import { DBDriver } from "../drivers/DBDriver";
-import { Config } from "../types/Config";
-import { Resource } from "../types/Resource";
 import { Utility } from "../utility/Utility";
 import { Document } from "./Document";
+import { FileStructure } from "../types/FileStructure";
 export class Queue {
 
-    private queue: Document[] = [];
+    private name: string = '';
+    private documents: Document[] = [];
     private dbDriver: DBDriver;
-    private dataStore: Resource[] = [];
 
-    constructor() {
+    constructor(name: string) {
         const dataDriverToUse: string = Utility.getInstance().getConstants('DATA_DRIVER');
         this.dbDriver = DBProcessor.getInstance().getDriver(dataDriverToUse);
+        this.name = name;
         this.initialize();
     }
 
+    public getName(): string {
+        return this.name;    
+    }
+
+    /**
+     * The method initializes the queue
+     * @returns a boolean of whether the queue was initialized or not
+     */
+
     public async initialize(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
-            return resolve(await this.dbDriver.initialize());
+            return resolve(await this.dbDriver.initialize(this.getName()));
         });
     }
 
@@ -28,9 +37,16 @@ export class Queue {
      */
     public async commit(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
-            this.dataStore = [];
-            this.dataStore = this.queue.map((document) => document.getResource());
-            return resolve(await this.dbDriver.write(this.dataStore));
+            const fileStructure: FileStructure[] = [];
+            fileStructure.push({name: this.getName(), queue: this.documents.map((document) => document.getResource())});
+            return resolve(await this.dbDriver.write(fileStructure));
+        });
+    }
+
+    public async purge(): Promise<boolean> {
+        return new Promise<boolean>(async (resolve, reject) => {
+            this.documents = [];
+            return resolve(await this.dbDriver.purge(this.getName()));
         });
     }
   
@@ -41,7 +57,7 @@ export class Queue {
      */
     public async enqueue(document: Document): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            this.queue.push(document);
+            this.documents.push(document);
             return resolve(true);
         });
     }
@@ -52,10 +68,10 @@ export class Queue {
      */
     public async dequeue(): Promise<Document> {
         return new Promise((resolve, reject) => {
-            if (this.queue.length === 0) {
+            if (this.documents.length === 0) {
                 return reject('Queue is empty');
             }
-            const item: Document|undefined = this.queue.shift() || undefined;
+            const item: Document|undefined = this.documents.shift() || undefined;
             if (item) {
                 return resolve(item);
             } else {
@@ -68,12 +84,12 @@ export class Queue {
      * This method gets the top most document from the queue without removing it
      * @returns a document from the queue
      */
-    public peek(): Promise<Document> {
+    public async peek(): Promise<Document> {
         return new Promise((resolve, reject) => {
-            if (this.queue.length === 0) {
+            if (this.documents.length === 0) {
                 return reject('Queue is empty');
             }
-            const item: Document = this.queue[0];
+            const item: Document = this.documents[0];
             if (item) {
                 return resolve(item);
             } else {
@@ -86,9 +102,9 @@ export class Queue {
      * This method checks if the queue is empty
      * @returns a boolean value indicating whether the queue is empty or not
      */
-    public isEmpty(): Promise<boolean> {
+    public async isEmpty(): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            return resolve(this.queue.length === 0);
+            return resolve(this.documents.length === 0);
         });
     }
 
@@ -96,9 +112,21 @@ export class Queue {
      * This method gets the length of the queue
      * @returns the length of the queue
      */
-    public length(): Promise<number> {
+    public async length(): Promise<number> {
         return new Promise((resolve, reject) => {
-            return resolve(this.queue.length);
+            return resolve(this.documents.length);
         });
     }
+
+    /**
+     * This method gets the next index of the queue
+     * @returns the next index of the queue
+     */
+    public async getNextIndex(): Promise<number> {
+        return new Promise(async (resolve, reject) => {
+            const length: number = await this.length();
+            return resolve( length + 1);
+        });
+    }
+
 }

@@ -1,3 +1,9 @@
+## [3.0.0](https://github.com/mustafaneguib/theta-mn-queue/commit/2f6da94523b3c0d2c0b4928df3ffd6adec5ec859 , https://github.com/mustafaneguib/theta-mn-queue/commit/3d575d3db85d88da007689749c0922c751bc3380)
+# Major Code Breaking Changes
+- The entire queue structure and API has been revamped, and as such the layer QueueProcessor has been removed as it was not needed and the Queue class will be directly used to create queues.
+- Named queues have been implemented, and now multiple queues can be persisted in the database.
+- The file based driver has been updated and the json file has been replaced with an append only text file that is more easier to use, manage and maintain.
+
 ## [2.1.0](https://github.com/mustafaneguib/theta-mn-queue/commit/16799f82a9b80bddc0c22a1fec0e067263677d7c)
 # Worked on the following:
 - Refactored the code to improve the public facing API

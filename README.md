@@ -13,6 +13,11 @@ Theta Queue is an easy to use queue system with support for multiple data source
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 
+## Changelog
+
+A history of changes have been given in the file CHANGELOG.md (https://github.com/mustafaneguib/theta-mn-queue/blob/master/CHANGELOG.md)
+
+
 ## Installation
 
 Install theta-mn-queue with npm

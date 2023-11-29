@@ -140,7 +140,6 @@ export class FileDriver extends DBDriver {
                     if (item !== '') {
                         const queueName: string = item.split('-')[0];
                         const data: Resource = JSON.parse(item.split('-')[1]);
-                        console.log('data', data);
                         const structure = fileStructure.find((fileStructure) => fileStructure.name === queueName)
                         if (structure) {
                             structure.queue.push(data);

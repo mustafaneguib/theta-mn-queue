@@ -17,6 +17,10 @@ export class Queue {
         this.initialize();
     }
 
+    /**
+     * This method returns the name of the queue
+     * @returns the name of the queue
+     */
     public getName(): string {
         return this.name;    
     }
@@ -43,6 +47,10 @@ export class Queue {
         });
     }
 
+    /**
+     * The method purges the queue
+     * @returns a boolean of whether the queue was purged or not
+     */
     public async purge(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
             this.documents = [];

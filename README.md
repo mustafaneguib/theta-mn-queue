@@ -30,31 +30,30 @@ or
 ## Usage/Examples
 
 ```typescript
-import { QueueProcessor, Document } from 'theta-mn-queue';
+import { Queue, Document } from 'theta-mn-queue';
 
 /**
  * The method setupQueue itself is given for demonstration purposes.
  */
 async function setupQueue() {
-//QueueProcessor is a singleton and the method getInstance provides the live object.
-const queueProcessor: QueueProcessor = QueueProcessor.getInstance();
 
-//Get the length of the queue by calling the length method
-let id = await queueProcessor.length() + 1;
+  let queue_name = 'queue1';
+  //A new queue will be created with the name queue1
+  let queue: Queue = new Queue(queue_name);
+  await queue.purge();//This method will remove any lingering queues in the database that have the same name as the one that has been provided.
 
-//The item will be enqued at the front of the queue
-let document: Document;
-document = new Document({id: 1, key: 'hello', content: 'world'});
-await queueProcessor.enqueue(document);
+  //A new document has been created and is being queued into the queue. The method call queue.getNextIndex() returns the next usable index. Use this method to get a sequence of numbers that can be used as ids.
+  let document: Document = new Document({id: (await queue.getNextIndex()), key: 'hello', content: 'world'});
+  await queue.enqueue(document);
+  
+  document = new Document({id: (await queue.getNextIndex()), key: 'hello', content: 'world'});
+  await queue.enqueue(document);
 
-document = new Document({id: 2, key: 'hello', content: 'world'});
-await queueProcessor.enqueue(document);
+  //At this stage the queue will be containing two items
 
-//The item in the front of the queue will be dequeued
-const queuedDataItem: Document = await queueProcessor.dequeue(); 
+  //The commit method ensures that the queue is persisted and saved to the database.
+  await queue.commit();
 
-//Calling the method commit will commit the data stored in the queue to the data storage set in the .env file. If this method is not called then the data in the queue is not persisted and is in memory.
-await queueProcessor.commit();
 }
 
 setupQueue();
@@ -78,41 +77,62 @@ This is the basic type that gets stored in the data storage as well. The definit
 
 ### Document
 
-#### getResource(): Resource
+#### public getResource(): Resource
 The getResource method returns a Resource type.
+
+#### public getId(): number
+The getItd method gets the id of the document.
+
+#### public getKey(): string
+The getKey method gets the key of the document.
+
+#### public getContent(): string
+The getContent method gets the content of the document.
 
 The public methods of QueueProcessor accept the Document object where required.
 
-### QueProcessor
+### Queue
 
-#### getInstance(): QueueProcessor
+#### public getName(): string
 
-This is a static method that returns the instance of the QueueProcessor. Essentially, QueueProcessor is a singleton and will only be instantiated once throughout the execution.
+This method returns the name of the queue
 
-#### commit(): Promise<boolean>
+### public async initialize(): Promise<boolean>
+
+This method initializes the queue and sets up the required infrastructure for the queue to function smoothly
+
+#### public async commit(): Promise<boolean>
 
 This method writes to the designated data storage persisting it permanently unless removed from the data storage.
 
-#### enqueue(document: Document): Promise<boolean>
+### public async purge(): Promise<boolean>
+
+This method purges(removes) the queue from the database.
+
+#### public async enqueue(document: Document): Promise<boolean>
 
 This method enqueues the document to the back of the queue.
 
-#### dequeue(): Promise<Document>
+#### public async dequeue(): Promise<Document>
 
 This method dequeues the document from the front of the queue and returns it.
 
-#### peek(): Promise<Document>
+#### public async peek(): Promise<Document>
 
 This method returns the document at the front of the queue without removing 
 it from the queue.
 
-#### isEmpty(): Promise<boolean>
+#### public async isEmpty(): Promise<boolean>
 
 This method returns whether the queue is empty or not.
 
-#### length(): Promise<number>
+#### public async length(): Promise<number>
 
 This method returns the number of items in the queue.
+
+#### public async getNextIndex(): Promise<number>
+This method gets the next index of the queue
+
 
 ## Features
 The features that have been marked as check have been implemented while those that are planned to be implemented are marked as unchecked.
@@ -124,12 +144,13 @@ The features that have been marked as check have been implemented while those th
 - [X] Code of conduct document
 - [X] Changelog document 
 - [X] Unit Tests
+- [X] Add support for multiple/parallel queues
+- [ ] Add support for job scheduling (Inprogress)
+- [ ] Rate limiting of jobs
 - [ ] Contribution documentation and plan of action
 - [ ] MySQL based persistant layer
 - [ ] MongoDB based persistant layer
 - [ ] PostgreSQL based persistant layer
-- [ ] Add support for multiple/parallel queues
-- [ ] Add support for job scheduling with rate limiting
 
 ## Environment Variables
 

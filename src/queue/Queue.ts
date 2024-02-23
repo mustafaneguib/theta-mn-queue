@@ -13,7 +13,7 @@ export class Queue {
     constructor(name: string) {
         const dataDriverToUse: string = Utility.getInstance().getConstants('DATA_DRIVER');
         this.dbDriver = DBProcessor.getInstance().getDriver(dataDriverToUse);
-        this.name = name;
+        this.name = name.replace(/\-/g, '_');
         this.initialize();
     }
 

@@ -13,7 +13,7 @@ export class RedisDriver extends DBDriver {
         this.redisClient.on('error', (err:any) => console.log('Redis Client Error', err));
     }
 
-    public async initialize(queueName: string): Promise<boolean> {
+    public async initialize(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
             await this.redisClient.connect()
             return resolve(true);

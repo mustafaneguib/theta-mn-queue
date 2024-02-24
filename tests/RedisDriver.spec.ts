@@ -3,7 +3,6 @@ import { DBDriver } from '../src/drivers/DBDriver';
 
 describe('RedisDriver', () => {
     let redisDriver: DBDriver;
-    let queue_name = 'queue1';
     beforeEach(() => {
         redisDriver = new RedisDriver();
     });    
@@ -12,7 +11,7 @@ describe('RedisDriver', () => {
     });
     describe('initialize', () => {
         it('should return true', async () => {
-            const result = await redisDriver.initialize(queue_name);
+            const result = await redisDriver.initialize();
             expect(result).toBe(true);
         });
     });

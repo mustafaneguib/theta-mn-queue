@@ -10,7 +10,7 @@ describe('FileDriver', () => {
     });
     describe('initialize', () => {
         it('should return true', async () => {
-            const result = await fileDriver.initialize(queue_name);
+            const result = await fileDriver.initialize();
             expect(result).toBe(true);
         });
     });

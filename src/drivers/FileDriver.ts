@@ -14,11 +14,9 @@ export class FileDriver extends DBDriver {
     /**
      * Initialize the database
      */
-    public async initialize(queueName: string): Promise<boolean> {
+    public async initialize(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
-            let resource: Resource[] = [];
-            await this.read(queueName);
-            return resolve(await this.write([]));
+            return resolve(true);
         });
     }
    
@@ -42,7 +40,11 @@ export class FileDriver extends DBDriver {
                 const fileStructure = content[i];
                 for (let j=0; j<fileStructure.queue.length; j++) {
                     const resource:Resource = fileStructure.queue[j];
-                    const text: string = `${fileStructure.name}-${JSON.stringify(resource)}\n`;
+                    const structure = {
+                        queue_name: fileStructure.name,
+                        data: JSON.stringify(resource)
+                    };
+                    const text: string = `${JSON.stringify(structure)}\n`;
                     await this.writeToFile(text);
                 }
             }
@@ -136,15 +138,16 @@ export class FileDriver extends DBDriver {
             if (readData) {
                 const data = readData.split('\n');
                 for (let i=0; i<data.length; i++) {
-                    const item = data[i];
-                    if (item !== '') {
-                        const queueName: string = item.split('-')[0];
-                        const data: Resource = JSON.parse(item.split('-')[1]);
+                    if (data[i] !== '' && data[i] !== '\n') {
+                        const dataString = data[i];
+                        const parsedData = JSON.parse(dataString);
+                        const queueName = parsedData.queue_name;
+                        const queueData = JSON.parse(parsedData.data);
                         const structure = fileStructure.find((fileStructure) => fileStructure.name === queueName)
                         if (structure) {
-                            structure.queue.push(data);
+                            structure.queue.push(queueData);
                         } else {
-                            fileStructure.push({name: queueName, queue: [data]});
+                            fileStructure.push({name: queueName, queue: [queueData]});
                         }
                     }
                 }

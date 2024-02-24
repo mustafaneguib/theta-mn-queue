@@ -5,10 +5,9 @@ export abstract class DBDriver {
     
     /**
      * Initialize the database
-     * @param queueName The name of the queue
      * @returns a promise with a boolean value indicating whether the initialization was successful
      */
-    abstract initialize(queueName: string): Promise<boolean>;
+    abstract initialize(): Promise<boolean>;
     /**
      * Read the entire database
      * @param queueName The name of the queue

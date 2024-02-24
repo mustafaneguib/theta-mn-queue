@@ -13,7 +13,7 @@ export class Queue {
     constructor(name: string) {
         const dataDriverToUse: string = Utility.getInstance().getConstants('DATA_DRIVER');
         this.dbDriver = DBProcessor.getInstance().getDriver(dataDriverToUse);
-        this.name = name.replace(/\-/g, '_');
+        this.name = name;
         this.initialize();
     }
 
@@ -32,7 +32,7 @@ export class Queue {
 
     public async initialize(): Promise<boolean> {
         return new Promise<boolean>(async (resolve, reject) => {
-            return resolve(await this.dbDriver.initialize(this.getName()));
+            return resolve(await this.dbDriver.initialize());
         });
     }
 

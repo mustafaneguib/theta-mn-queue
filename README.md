@@ -164,7 +164,8 @@ Please refer to the file .env.example that has been provided in the codebase wit
 
 `BASE_URL`
 `PORT`
-`MONGO_URL` 
+`MONGO_URL`
+`REDIS_HOST`
 `REDIS_PORT`
 `DATA_DRIVER`
 
@@ -179,7 +180,8 @@ Please refer to the file .env.example that has been provided in the codebase wit
 
 ## Feedback
 
-If you have any feedback, please reach out to us at mustafa.neguib@gmail.com
+If you have any feedback, please reach out to us at mustafa.neguib@dataresearchanalysis.com
+Theta MN Queue is a project initiated by Mustafa Neguib and Data Research Analysis (SMC-Private) Limited (www.dataresearchanalysis.com)
 
 ## Contributing
 

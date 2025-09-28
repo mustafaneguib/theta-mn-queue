@@ -3,13 +3,21 @@ import { Resource } from "../types/Resource";
 import { createClient } from 'redis'
 import { RedisClientType } from '@redis/client'
 import { FileStructure } from "../types/FileStructure";
+import { Utility } from "../utility/Utility";
 
 export class RedisDriver extends DBDriver {
     private redisClient: RedisClientType;
     private key: string = 'theta-mn-queue';
     constructor() {
         super();
-        this.redisClient = createClient()
+        const redisHost = Utility.getInstance().getConstants('REDIS_HOST');
+        const redisPort = Utility.getInstance().getConstants('REDIS_PORT');
+        this.redisClient = createClient({
+            socket: {
+                host: redisHost,
+                port: redisPort
+            }
+        })
         this.redisClient.on('error', (err:any) => console.log('Redis Client Error', err));
     }
 

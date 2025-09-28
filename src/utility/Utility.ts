@@ -25,6 +25,7 @@ export class Utility {
         return {
             PORT: process.env.PORT || 3001,
             MONGO_URL: process.env.MONGO_URL || '',
+            REDIS_HOST: process.env.REDIS_HOST || 'localhost',
             REDIS_PORT: process.env.REDIS_PORT || 6379,
             DATA_DRIVER: process.env.DATA_DRIVER || 'mongodb', //file, mongodb, redis
         }[key];
